@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Consuming SWAPI</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <script src="./jquery.js"></script>
+
+</head>
+
+<body>
+        <input type="text" name="category" id="category">
+        <input type="number" name="element" id="element">
+        <button onclick="sendData()">Send Data</button>
+
+  <script >
+
+    var baseUrl = "https://swapi.co/api/people/3";
+    var category = document.getElementById('category').value;
+    var number = window.jQuery('#element').val(); 
+
+    console.log(category, number);
+    var fullUrl = baseUrl + category + '/' + number;
+
+    function sendData() {
+        $.ajax({
+            type:"get",
+            url:fullUrl,
+            success: function( data) {
+                console.log(data);
+                document.getElementsByTagName('body')[0].append(data);
+                $('body').append(data);
+            }
+        });
+    }
+    window.onload = function() {
+    if (window.jQuery) {  
+        // jQuery is loaded  
+        alert("Yeah!");
+    } else {
+        // jQuery is not loaded
+        alert("Doesn't Work");
+    }
+}
+  </script>
+</body>
+</html>
